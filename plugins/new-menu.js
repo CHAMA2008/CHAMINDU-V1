@@ -153,7 +153,7 @@ cmd({
     } catch (err) {
         console.log('Unexpected error in menu command:', err);
     }
-}
+
 const messageID = sentMsg.key.id;
 
         // Menu data (complete version)
