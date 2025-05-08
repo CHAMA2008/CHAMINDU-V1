@@ -20,7 +20,6 @@ cmd({
             hour12: false
         }).format(date);
 
-        // Greeting in Sinhala based on Sri Lanka time
         const hourNumber = parseInt(new Intl.DateTimeFormat('en-GB', {
             timeZone: 'Asia/Colombo',
             hour: '2-digit',
@@ -33,7 +32,6 @@ cmd({
 
         const senderName = m.pushName || "User";
 
-        // Menu caption with dynamic info
         const menuCaption = `╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
 ┃🙋 *User:* ${senderName}
 ┃⏰ *Local Time (LK):* ${timeString}
@@ -66,7 +64,6 @@ cmd({
 
 > ${config.DESCRIPTION}`;
 
-
         const contextInfo = {
             mentionedJid: [m.sender],
             forwardingScore: 999,
@@ -78,7 +75,6 @@ cmd({
             }
         };
 
-        // Function to send menu image with timeout
         const sendMenuImage = async () => {
             try {
                 return await conn.sendMessage(
@@ -100,26 +96,9 @@ cmd({
             }
         };
 
-         //menu voice note 
-          const sendMenuVideo = async () => {
-    try {
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Small delay after image
-        await conn.sendMessage(from, {
-            video: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/logo/VID-20250508-WA0031(1).mp4' },
-            caption: "🔥 Here's your cinematic menu video!",
-            mimetype: 'video/mp4',
-            gifPlayback: true
-        }, { quoted: mek });
-    } catch (e) {
-        console.log('Video send failed, continuing without it');
-    }
-};
-
-     
-        // Function to send menu audio with timeout
         const sendMenuAudio = async () => {
             try {
-                await new Promise(resolve => setTimeout(resolve, 1000)); // Small delay after image
+                await new Promise(resolve => setTimeout(resolve, 1000));
                 await conn.sendMessage(from, {
                     audio: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/autovoice/cm4ozo.mp3' },
                     mimetype: 'audio/mp4',
@@ -130,19 +109,35 @@ cmd({
             }
         };
 
-        // Send image first, then audio sequentially
+        const sendMenuVideo = async () => {
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                await conn.sendMessage(from, {
+                    video: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/logo/VID-20250508-WA0031(1).mp4' },
+                    mimetype: 'video/mp4',
+                    caption: "🎥 *Watch Menu Preview Video*",
+                    ptv: true // For circular video message style
+                }, { quoted: mek });
+            } catch (e) {
+                console.log('Video send failed, continuing without it');
+            }
+        };
+
         let sentMsg;
         try {
-            // Send image with 10s timeout
             sentMsg = await Promise.race([
                 sendMenuImage(),
                 new Promise((_, reject) => setTimeout(() => reject(new Error('Image send timeout')), 10000))
             ]);
-            
-            // Then send audio with 1s delay and 8s timeout
+
             await Promise.race([
                 sendMenuAudio(),
                 new Promise((_, reject) => setTimeout(() => reject(new Error('Audio send timeout')), 8000))
+            ]);
+
+            await Promise.race([
+                sendMenuVideo(),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('Video send timeout')), 10000))
             ]);
         } catch (e) {
             console.log('Menu send error:', e);
@@ -154,8 +149,12 @@ cmd({
                 );
             }
         }
-        
-        const messageID = sentMsg.key.id;
+
+    } catch (err) {
+        console.log('Unexpected error in menu command:', err);
+    }
+}
+const messageID = sentMsg.key.id;
 
         // Menu data (complete version)
         const menuData = {
@@ -540,4 +539,3 @@ cmd({
         }
     }
 });
-
