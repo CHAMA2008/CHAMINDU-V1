@@ -101,17 +101,20 @@ cmd({
         };
 
          //menu voice note 
-          const sendMenuAudio = async () => {
-            try {
-                await new Promise(resolve => setTimeout(resolve, 1000)); // Small delay after image
-                await conn.sendMessage(from, {
-                    audio: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/logo/VID-20250508-WA0031(1).mp4',
-                    ptv: true,
-                }, { quoted: mek });
-            } catch (e) {
-                console.log('Audio send failed, continuing without it');
-            }
-        };
+          const sendMenuVideo = async () => {
+    try {
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Small delay after image
+        await conn.sendMessage(from, {
+            video: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/logo/VID-20250508-WA0031(1).mp4' },
+            caption: "🔥 Here's your cinematic menu video!",
+            mimetype: 'video/mp4',
+            gifPlayback: true
+        }, { quoted: mek });
+    } catch (e) {
+        console.log('Video send failed, continuing without it');
+    }
+};
+
      
         // Function to send menu audio with timeout
         const sendMenuAudio = async () => {
