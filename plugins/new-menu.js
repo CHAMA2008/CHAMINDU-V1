@@ -41,13 +41,13 @@ cmd({
 ╰━━━━━━━━━━━━━━━┈⊷
 ╭━━━━━━━━━━━━━━━━┈⊷
 ┃⚙️ *Bot Info*
-┃├ Owner: *${config.OWNER_NAME}*
+┃├ Owner: *ChaMinDu*
 ┃├ Baileys: *Multi Device*
 ┃├ Type: *NodeJs*
 ┃├ Platform: *Heroku*
 ┃├ Mode: *[${config.MODE}]*
 ┃├ Prefix: *[${config.PREFIX}]*
-┃└ Version: *1.0.0 Bᴇᴛᴀ*
+┃└ Version: *1.0.0*
 ╰━━━━━━━━━━━━━━━┈⊷
 
 ╭━━〔 *Menu List* 〕━━┈⊷
@@ -73,7 +73,7 @@ cmd({
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363419192353625@newsletter',
-                newsletterName: config.OWNER_NAME,
+                newsletterName: '☈☟𝗖𝗛𝗔𝗠𝗔 𝗠𝗗 𝗩1️⃣',
                 serverMessageId: 143
             }
         };
@@ -84,7 +84,7 @@ cmd({
                 return await conn.sendMessage(
                     from,
                     {
-                        image: { url:'https://files.catbox.moe/5o2pjp.mp4' },
+                        image: { url:'https://files.catbox.moe/ww4val.jpg' },
                         caption: menuCaption,
                         contextInfo: contextInfo
                     },
