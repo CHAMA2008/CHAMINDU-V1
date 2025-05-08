@@ -1,189 +1,210 @@
-ජ්ජු<p align="center">
-  <h1 align="center" style="font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px #00ffff, 0 0 20px #0088ff;">𝗞𝗛𝗔𝗡-𝗠𝗗</h1>
-</p>
-
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=600&size=25&duration=4000&pause=1000&color=00F7FF&center=true&vCenter=true&width=500&lines=ULTIMATE+WHATSAPP+BOT;MULTI-DEVICE+SUPPORT;POWERED+BY+ඔබ+නිසා+මම+ඉන්නවා+😂+😂+BAILEYS;FAST++SECURE++RELIABLE" alt="Animated Typing SVG" />
-</p>
-<div align="center">
-  <a href="https://github.com/JawadYT36/followers"><img title="Followers" src="https://img.shields.io/github/followers/JawadYT36?color=EB5406&style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="https://github.com/JawadYT36/KHAN-MD/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/JawadYT36/KHAN-MD?color=FFCE44&style=for-the-badge&logo=reverbnation&logoColor=white"></a
-                                                                                                                                                                                                                 >
-  <a href="https://github.com/JawadYT36/KHAN-MD
-    network/members"><img title="Forks" src="https://img.shields.io/github/forks/JawadYT36/KHAN-MD?color=FF007F&style=for-the-badge&logo=git&logoColor=white"></a>
-  <a href="https://github.com/JawadYT36/KHAN-MD/"><img title="Size" src="https://img.shields.io/github/repo-size/JawadYT36/KHAN-MD?style=for-the-badge&color=FFFF33&logo=docusign&logoColor=white"></a>
-  <a href="https://github.com/JawadYT36/KHAN-MD/graphs/commit-activity"><img height="28" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge&logo=gitpod&logoColor=white"></a>
-</div>
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=KHAN-MD&label=VISITORS&style=flat-square&color=0002FF" />
-</p>
-
-> **Current Bot Version `5.0.0`**  
-
----
-
-*Dont forget to fork & star repo*
-
----
-
-<div align="center">
-  <img src="https://cdn.ironman.my.id/i/9zd4if.jpg" width="300" style="border-radius: 20px; box-shadow: 0 0 20px #00ffff;"/>
-</div>
-
-<div align="center">
-  <img src="https://i.imgur.com/LyHic3i.gif" width="400" style="border-radius: 20px; box-shadow: 0 0 25px #0088ff;"/>
-</div>
-
-<div align="center">
-  <img src="https://github.com/JawadYT36/KHAN-MD/blob/main/assets/divider.gif?raw=true" width="100%"/>
-</div>
-<div align="center">
-  <img src="https://github.com/JawadYT36/KHAN-MD/blob/main/assets/deployheader.gif?raw=true" width="80%"/>
-</div>
-
-## 🛰️ Deployment Steps
-
-<div style="background: #000000; border: 1px solid #00ffff; border-radius: 15px; padding: 20px; box-shadow: 0 0 15px #00ffff; margin-bottom: 30px;">
-    
-<div style="background: #111111; padding: 15px; border-radius: 10px; border-left: 3px solid #ff00ff;">
-  <p style="color: #00ffff;">First star & Fork repo using button Below !</p>
-  <a href='https://github.com/JawadYT36/KHAN-MD/fork' target="_blank">
-    <img src='https://img.shields.io/badge/FORK_REPOSITORY-008000?style=for-the-badge&logo=github&logoColor=white&labelColor=000000'/>
-  </a>
-</div>
-
-</div>
-
-<div style="background: #000000; border: 1px solid #ff00ff; border-radius: 15px; padding: 20px; box-shadow: 0 0 15px #ff00ff; margin-bottom: 30px;">
-  
-<div style="background: #111111; padding: 15px; border-radius: 10px; border-left: 3px solid #00ffff;">
-  
---- 
-> **PAIRING LINK (01)**
-  <a href='https://khanxmd.onrender.com/' target="_blank">
-    <img src='https://img.shields.io/badge/PAIR_CODE_1-00FFFF?style=for-the-badge&logo=matrix&logoColor=white&labelColor=000000'/>
-  </a></br>
-  
-  <div style="height: 10px;"></div>
-  
-> **PAIRiNG LINK (02)**
-  <a href='https://jawadxmd.onrender.com/' target="_blank">
-    <img src='https://img.shields.io/badge/PAIR_CODE_2-FF00FF?style=for-the-badge&logo=matrix&logoColor=white&labelColor=000000'/>
-  </a>
-  
-  ---
-  <p style="color: #aaaaaa; font-size: 12px; margin-top: 10px;">
-    <img src="https://github.com/JawadYT36/KHAN-MD/blob/main/assets/warning.gif?raw=true" width="15"/> 
-    Connection issues may require VPN activation
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Black+Ops+One&size=100&pause=1000&color=B700FB&center=true&width=1000&height=200&lines=CHAMA-MD" alt="Typing SVG" /></a>
   </p>
-</div>
-
-</div>
-
-<div align="center">
-  <img src="https://github.com/JawadYT36/KHAN-MD/blob/main/assets/techwave.gif?raw=true" width="80%"/>
-</div>
-
-## 📡 DEPLOYMENT OPTIONS
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+<a><img src='https://files.catbox.moe/0eo2q4.jpg'/></a>
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+<p align="center">
+  <a href="https://github.com/CHMA2009"><img title="Developer" src="https://img.shields.io/badge/Author-Mr%20chamaofc-FF7604.svg?style=big-square&logo=github" /></a>
+</p>
 
 <div align="center">
-  <table>
-    <tr>
-      <td><a href="https://dashboard.heroku.com/new?template=https://github.com/JawadYT36/KHAN-MD" target="_blank"><img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white&labelColor=000000&color=00ffff"/></a></td>
-      <td><a href="https://talkdrove.com" target="_blank"><img src="https://img.shields.io/badge/TalkDrove-6971FF?style=for-the-badge&logo=github&logoColor=white&labelColor=000000"/></a></td>
-    </tr>
-    <tr>
-      <td><a href="https://app.koyeb.com/services/deploy?type=git&repository=JawadYT36/KHAN-MD" target="_blank"><img src="https://img.shields.io/badge/Koyeb-FF009D?style=for-the-badge&logo=koyeb&logoColor=white&labelColor=000000"/></a></td>
-      <td><a href="https://railway.app/new" target="_blank"><img src="https://img.shields.io/badge/Railway-FF8700?style=for-the-badge&logo=railway&logoColor=white&labelColor=000000"/></a></td>
-    </tr>
-    <tr>
-      <td><a href="https://dashboard.render.com/web/new" target="_blank"><img src="https://img.shields.io/badge/Render-000000?style=for-the-badge&logo=render&logoColor=white&labelColor=000000&color=00ffaa"/></a></td>
-      <td><a href="https://app.netlify.com/" target="_blank"><img src="https://img.shields.io/badge/Netlify-CC00FF?style=for-the-badge&logo=huggingface&logoColor=white&labelColor=000000"/></a></td>
-    </tr>
-  </table>
+  
+[![WhatsApp Channel](https://img.shields.io/badge/Join-WhatsApp%20Channel-FF00F8?style=big-square&logo=whatsapp)](https://whatsapp.com/channel/0029Vb5OiseHltY10IBkF112)
 </div>
 
-<table align="center">
-  <tr>
-    <td>
-      <a href="https://whatsapp.com/channel/0029VatOy2EAzNc2WcShQw1j/1368" target="_blank">
-        <img alt="View Workflow Codes" src="https://img.shields.io/badge/View-Workflow%20Codes-FF0076?style=for-the-badge&logo=githubactions&logoColor=white"/>
-      </a>
-    </td>
-  </tr>
-</table>  
+ <p align="center"><img src="https://profile-counter.glitch.me/{chama-md}/count.svg" alt="lakaofc :: Visitor's Count" old_src="https://profile-counter.glitch.me/{lakaofc}/count.svg" /></p>
 
-<div align="center">
-  <img src="https://github.com/JawadYT36/KHAN-MD/blob/main/assets/techwave.gif?raw=true" width="100%"/>
-</div>
 
-## 🌟 BOT FEATURES
+<p align="center">
+<a href="https://github.com/CHMA2009/-CHAMA-MD"><img title="PUBLIC-BOT" src="https://img.shields.io/static/v1?label=Language&message=English&style=square&color=darkpink"></a> &nbsp;
+  <img src="https://komarev.com/ghpvc/?username=CHMA2009&label=VIEWS&style=square&color=blue" />
+</p>
+</p> 
 
-```bash
-✦ Antidelete, Antiviewonce, Antilink
-✦ High speed YT, Tiktok, FB, IG Downloaders
-✦ 10+ AI models + Image anlysis AI
-✦ Fast low latensie, Powerful
-✦ Futuristic Cool ICY UI
+<p align="center">
+  <a href="https://github.com/CHMA2009/-CHAMA-MD"><img title="Release" src="https://img.shields.io/badge/Release-%20v2.0.0-cyan.svg?style=for-the-badge&logo=appveyor" /></a>
+</p>
+
+
+***
+
+### 1. Fork This Repository
+
+Start by forking this repository to your own GitHub account. Click the button below to fork:
+
+  <a href="https://github.com/CHMA2009/-CHAMA-MD/fork"><img title="CHAMA-MD" src="https://img.shields.io/badge/FORK-CHAMA,MD-h?color=blue&style=for-the-badge&logo=stackshare"></a>
+  
+### 2. Get Session ID 
+
+You will need a session ID to run the CHAMA=MD. Click the button below to obtain your session ID.if any error in loading site try vpn:
+
+> **1. PAIR CODE SESSION ID**
+
+<a href='https://chama-md4.onrender.com' target="_blank">
+  <img alt='Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-orange?style=for-the-badge&logo=opencv&logoColor=black'/>
+</a>
+<br> 
+
+> **2. PAIR CODE SESSION ID**
+
+<a href='https://chama-md3-1tng.onrender.com/' target="_blank">
+  <img alt='Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-darkpink?style=for-the-badge&logo=opencv&logoColor=black'/>
+</a>
+<br> 
+
+---
+
+# Deployment
+
+You can deploy this bot for free on the following platforms:
+
+---
+### <h4 align="">1. HEROKU</h4>
+<p style="text-align: center; font-size: 1.2em;">
+
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/CHMA2009/-CHAMA-MD)
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+
+### <h4 align="">3. KOYEB</h4>
+<p style="text-align: center; font-size: 1.2em;">
+
+<p align="">
+<a href='https://app.koyeb.com/services/deploy?type=git&repository=itx-alii-raza/ALI-MD&ports=3000&env[PREFIX]=.&env[SESSION_ID]=&env[ALWAYS_ONLINE]=false&env[MODE]=public&env[AUTO_STATUS_MSG]=Seen%20status%20by%20ALI-MD&env[AUTO_STATUS_REPLY]=false&env[AUTO_STATUS_SEEN]=true&env[AUTO_TYPING]=false&env[ANTI_LINK]=true&env[AUTO_REACT]=false&env[READ_MESSAGE]=false' target="_blank"><img alt='Heroku' src='https://img.shields.io/badge/-koyeb ‎ deploy-FF009D?style=for-the-badge&logo=koyeb&logoColor=white'/< width=150 height=28/p></a>
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+
+### <h4 align="">2. TALKDROVE FREE</h4>
+<p style="text-align: center; font-size: 1.2em;">
+  
+<p align="">
+<a href='https://talkdrove.com/share-bot/11' target="_blank"><img alt='Heroku' src='https://img.shields.io/badge/-TalkDrove ‎Deploy-6971FF?style=for-the-badge&logo=Github&logoColor=white'/< width=150 height=28/p></a>
+  <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+
+### <h4 align="">4. RAILWAY</h4>
+<p style="text-align: center; font-size: 1.2em;">
+
+<p align="">
+<a href='https://railway.app/new' target="_blank"><img alt='Heroku' src='https://img.shields.io/badge/-railway deploy-FF8700?style=for-the-badge&logo=railway&logoColor=white'/< width=150 height=28/p></a>
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+
+### <h4 align="">5. RENDER</h4>
+<p style="text-align: center; font-size: 1.2em;">
+  
+<p align="">
+<a href='https://dashboard.render.com/web/new' target="_blank"><img alt='Heroku' src='https://img.shields.io/badge/-Render deploy-black?style=for-the-badge&logo=render&logoColot=white'/< width=150 height=28/p></a>
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+
+### <h4 align="">6. HUGGING FACE</h4>
+<p style="text-align: center; font-size: 1.2em;">
+  
+<p align="">
+<a href='https://app.netlify.com/' target="_blank"><img alt='Netlify' src='https://img.shields.io/badge/-Netlify Deploy-CC00FF?style=for-the-badge&logo=huggingface&logoColor=white'/< width=150 height=28/p></a> </a>
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+<details>
+  
+<b><strong><summary align="" style="color: Yello;">EASIEST METHOD 2</summary></strong></b>
+<p style="text-align: center; font-size: 1.2em;">
+ 
+
+## <h3 align=""> HOW TO DEPLOY ON HUGGING FACE</h3>
+<h6 align-"center">
+*❄️ Deploy chama-md On Hugging Face For Free !*
+
+
+</details>
+
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+
+
+### <h4 align="">7. REPLIT</h4>
+<p style="text-align: center; font-size: 1.2em;">
+
+<p align="">
+<a href='https://replit.com/~' target="_blank"><img alt='Replit' src='https://img.shields.io/badge/-Replit Deploy-1976D2?style=for-the-badge&logo=replit&logoColor=white'/< width=150 height=28/p></a> </a>
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+
+
+## 👑 PROJECT OWNER 
+HII DEARS FRIENDS IF YOU WANT ANY HELP SO YOU CAN CONTACT↘︎ WITH ME WIA WHATSAPP ITS ME CHAMA-MD
+
+<p align="">
+<a href='https://wa.me/+94774575878?text=*ʜɪɪ+chamindu+ɪ+ɴᴇᴇᴅ+ʜᴇʟᴘ!.+ɪ+ᴍᴇssᴀɢᴇᴅ+ʏᴏᴜ+ғʀᴏᴍ+𝚌𝚑𝚊𝚖𝚊-ᴍᴅ+ʀᴇᴘᴏ!!*' target="_blank"><img alt='Replit' src='https://img.shields.io/badge/ Whatsapp -25D366?style=for-the-badge&logo=whatsapp&logoColor=white'/< width=150 height=28/p></a> </a>
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+---
+
+
+### GitHub Actions Workflows
+
+#### Node.js CI
+
+You can set up a continuous integration workflow by creating a `.github/workflows/main.yml` file with the following content:
+
+```yaml
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start application
+      run: npm start
 ```
 
-<div align="center">
-  <img src="https://github.com/JawadYT36/KHAN-MD/blob/main/assets/cyberdivider.gif?raw=true" width="100%"/>
-</div>
-
-## 🪀  SUPPORT CHANNEL
-
-<div align="center">
-  <a href="https://whatsapp.com/channel/0029VatOy2EAzNc2WcShQw1j">
-    <img src="https://img.shields.io/badge/Join-WhatsApp%20Channel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white&labelColor=000000"/>
-  </a>
-</div>
-
-<div align="center">
-  <img src="https://github.com/JawadYT36/KHAN-MD/blob/main/assets/neonpulse.gif?raw=true" width="300"/>
-</div>
-
-## ⚠️ WARNING !
-
-<div style="background-color: #000000; border-left: 5px solid #ff00ff; padding: 10px; border-radius: 0 15px 15px 0; box-shadow: 0 0 15px #ff00ff;">
-  <h3 style="color: #00ffff; font-family: 'Orbitron', sans-serif;">DISCLAIMER</h3>
-  <p style="color: #ffffff;">This bot is not affiliated with WhatsApp Inc. Use at your own risk. Misuse may result in account bans.</p>
-</div>
-
-<div align="center">
-  <img src="https://github.com/JawadYT36/KHAN-MD/blob/main/assets/digitalrain.gif?raw=true" width="100%"/>
-</div>
-
-## 🗃️ PROJECT ARCHITECTS
-<div align="center">
-  <a href="https://github.com/JawadYT36">
-    <img src="https://github-readme-stats.vercel.app/api?username=JawadYT36&show_icons=true&theme=dark&border_color=00ffff&title_color=00ffff&icon_color=00ffff" width="400"/>
-  </a>
-</div>
-
-<div align="center">
-  <img src="https://github.com/JawadYT36/KHAN-MD/blob/main/assets/futuretech.gif?raw=true" width="100%"/>
-</div>
-
-## 👑 KHAN STATUS
-
-```diff
-+ Project Status: Active
-! Version: 5.0.0 Neon Edition
-# License: APACHE
-```
-
-<div align="center">
-  <img src="https://github.com/JawadYT36/KHAN-MD/blob/main/assets/endwave.gif?raw=true" width="100%"/>
-</div>
 
 
+## 🔗 CHAMA-MD INFO
+
+---
+
+ ![repo views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fchamaofc%2Fchama-md&count_bg=%2379C83D&title_bg=%23555555&icon=gitpod.svg&icon_color=%23E7E7E7&title=Views&edge_flat=false)
+
+![Docker Size](https://img.shields.io/docker/image-size/CHMA2009/-CHAMA-MD?style=flat&logo=docker&label=Docker+Size)
+![Docker Pulls](https://img.shields.io/docker/pulls/CHMA2009/-CHAMA-MD?style=flat&logo=docker&label=Docker+Pulls)
+
+![forks](https://img.shields.io/github/forks/CHMA2009/-CHAMA-MD?label=Forks&style=social)
+![stars](https://img.shields.io/github/stars/CHMA2009/-CHAMA-MD?style=social)
+
+![size](https://img.shields.io/github/repo-size/CHMA2009/-CHAMA-MD?color=purple&label=Repo%20Size&style=plastic)
+![license](https://img.shields.io/github/license/CHMA2009/-CHAMA-MD?color=purple&label=License&style=plastic)
+
+----
+
+## 🌐 WhatsApp Channel 
+
+---
+
+Stay connected with the latest updates and community by joining our official WhatsApp group and channel. You can also contact the owner directly.
+
+[![WhatsApp Channel](https://img.shields.io/badge/Join-WhatsApp%20Channel-25D366?style=for-the-badge&logo=whatsapp)](https://whatsapp.com/channel/0029Vb5OiseHltY10IBkF112)
+
+---
 
 
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
-
-
-
-
-
+---
