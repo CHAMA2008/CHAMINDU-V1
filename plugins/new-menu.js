@@ -84,7 +84,7 @@ cmd({
                 return await conn.sendMessage(
                     from,
                     {
-                        image: { url:'https://files.catbox.moe/ww4val.jpg' },
+                        image: { url:'https://files.catbox.moe/5o2pjp.mp4' },
                         caption: menuCaption,
                         contextInfo: contextInfo
                     },
