@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const { proto, generateWAMessageFromContent } = require('@whiskeysockets/baileys');
 const { cmd } = require("../command");
 
 cmd({
@@ -8,73 +9,90 @@ cmd({
   react: '✅',
   category: 'tools',
   filename: __filename
-}, async (conn, m, store, { from, args, reply }) => {
+}, async (conn, m, store, { from, args, reply, pushname }) => {
   if (!args[0]) {
     return reply("🌸 *Status videos for what?*\n\n*Usage Example:*\n.statue <query>");
   }
 
   const query = args.join(" ");
   await store.react('⌛');
-  
+
   try {
     reply(`🔎 Searching TikTok Status Videos for: *${query}*`);
 
     const response = await fetch(`https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=${encodeURIComponent(query)}`);
     const data = await response.json();
 
-    if (!data?.data?.length) {
+    if (!data || !data.data || data.data.length === 0) {
       await store.react('❌');
       return reply("❌ No status videos found. Try a different keyword!");
     }
 
-    const results = data.data.sort(() => Math.random() - 0.5).slice(0, 10); // 10 random results
+    const results = data.data.sort(() => Math.random() - 0.5).slice(0, 10);
+    const cards = [];
 
-    let listText = `🎬 *Select a TikTok Status Video:*\n\n`;
-    results.forEach((v, i) => {
-      listText += `${i + 1}. ${v.title} (${v.duration || '??'}s)\n`;
-    });
-    listText += `\n_Reply with a number (1-${results.length}) to get that video._`;
+    for (let i = 0; i < results.length; i++) {
+      const video = results[i];
 
-    const listMsg = await conn.sendMessage(from, {
-      text: listText
-    }, { quoted: m });
+      if (!video.nowm) continue;
 
-    // Handle reply
-    const handler = async (msg) => {
-      const msgContent = msg?.message?.extendedTextMessage?.text?.trim();
-      const replyId = msg?.message?.extendedTextMessage?.contextInfo?.stanzaId;
+      cards.push({
+        body: proto.Message.InteractiveMessage.Body.fromObject({
+          text: `🎬 ${video.title}`
+        }),
+        footer: proto.Message.InteractiveMessage.Footer.fromObject({
+          text: `🎥 By: ${video.author || 'Unknown'} | Duration: ${video.duration || 'Unknown'}`
+        }),
+        header: proto.Message.InteractiveMessage.Header.fromObject({
+          title: `TikTok Status ${i + 1}`,
+          hasMediaAttachment: true,
+          videoMessage: {
+            url: video.nowm,
+            mimetype: 'video/mp4',
+            caption: `🌸 *${video.title}*`
+          }
+        }),
+        nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
+          buttons: []
+        })
+      });
+    }
 
-      if (replyId !== listMsg.key.id) return;
+    if (cards.length === 0) {
+      return reply("❌ No valid videos to display!");
+    }
 
-      const choice = parseInt(msgContent);
-      if (!choice || choice < 1 || choice > results.length) {
-        return conn.sendMessage(from, { text: "❌ Invalid number. Please enter 1 to " + results.length }, { quoted: msg });
+    const msg = generateWAMessageFromContent(m.chat, {
+      viewOnceMessage: {
+        message: {
+          messageContextInfo: {
+            deviceListMetadata: {},
+            deviceListMetadataVersion: 2
+          },
+          interactiveMessage: proto.Message.InteractiveMessage.fromObject({
+            body: proto.Message.InteractiveMessage.Body.create({
+              text: '📱 TikTok Status Videos for: ' + query
+            }),
+            footer: proto.Message.InteractiveMessage.Footer.create({
+              text: '> *© ❄️Frozen-queen❄️ by mr chathura*'
+            }),
+            header: proto.Message.InteractiveMessage.Header.create({
+              hasMediaAttachment: false
+            }),
+            carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({
+              cards
+            })
+          })
+        }
       }
+    }, {});
 
-      const selected = results[choice - 1];
-      if (!selected.nowm) return conn.sendMessage(from, { text: "❌ Video URL not found." }, { quoted: msg });
-
-      const caption = `🎬 *${selected.title}*\n👤 ${selected.author || 'Unknown'}\n⏱ ${selected.duration || 'Unknown'}s\n🔗 ${selected.link}`;
-      await conn.sendMessage(from, {
-        video: { url: selected.nowm },
-        caption
-      }, { quoted: msg });
-
-      // Optional: remove listener after successful response
-      conn.ev.off('messages.upsert', upsertHandler);
-    };
-
-    const upsertHandler = (update) => {
-      const msg = update.messages[0];
-      if (!msg?.message?.extendedTextMessage) return;
-      handler(msg);
-    };
-
-    conn.ev.on('messages.upsert', upsertHandler);
+    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
+    await store.react('✅');
 
   } catch (error) {
-    console.error("Statue Command Error:", error);
+    console.error("Error in Statue Command:", error);
     await store.react('❌');
-    reply("❌ Something went wrong. Try again later.");
+    reply("❌ An error occurred while searching TikTok status videos. Please try again later.");
   }
 });
