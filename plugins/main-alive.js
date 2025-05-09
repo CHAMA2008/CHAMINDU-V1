@@ -15,7 +15,6 @@ async (conn, mek, m, { from, sender, reply }) => {
     try {
         const now = new Date();
 
-        // Timezone-specific Sri Lanka time
         const options = {
             timeZone: "Asia/Colombo",
             hour12: true,
@@ -25,7 +24,6 @@ async (conn, mek, m, { from, sender, reply }) => {
         };
         const time = now.toLocaleTimeString("en-US", options);
 
-        // Emoji mapping
         const emojiMap = {
             "0": "0️⃣", "1": "1️⃣", "2": "2️⃣", "3": "3️⃣",
             "4": "4️⃣", "5": "5️⃣", "6": "6️⃣", "7": "7️⃣",
@@ -38,7 +36,6 @@ async (conn, mek, m, { from, sender, reply }) => {
         const usedRam = toEmoji((process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2));
         const totalRam = toEmoji((os.totalmem() / 1024 / 1024).toFixed(2));
 
-        // Greeting based on Sri Lanka hour
         const hour = parseInt(now.toLocaleString("en-US", { hour: "2-digit", hour12: false, timeZone: "Asia/Colombo" }));
         let greeting = "Hello!";
         if (hour >= 5 && hour < 12) greeting = "🌞 Good Morning!";
@@ -47,12 +44,12 @@ async (conn, mek, m, { from, sender, reply }) => {
         else greeting = "🌙 Good Night!";
 
         const status = `
-╭━━〔 *🤖 ${config.BOT_NAME} STATUS* 〕━━╮
+╭━━〔 *🤖 CHAMA-MD-V1 STATUS* 〕━━╮
 
 ╭──〔 ${greeting} 〕──╮
 
 🟢 *BOT STATUS:* Active & Online
-👑 *Owner:* ${config.OWNER_NAME}
+👑 *Owner:* chamindu
 ⚙️ *Version:* 1.0.0
 ✏️ *Prefix:* [ ${config.PREFIX} ]
 🌐 *Mode:* ${config.MODE === 'public' ? '🌍 Public' : '🔐 Private'}
@@ -66,13 +63,40 @@ async (conn, mek, m, { from, sender, reply }) => {
 
 🖥️ *Host:* ${os.hostname()}
 
-📝 *Description:* ${config.DESCRIPTION}
+
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*
 
 ╰━━〔 *✨ ALIVE END ✨* 〕━━╯
 `;
 
+        // First, try sending the video
+        const sendMenuVideo = async () => {
+            try {
+                return await conn.sendMessage(
+                    from,
+                    {
+                        video: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/logo/VID-20250508-WA0031(1).mp4' },
+                        mimetype: 'video/mp4',
+                        ptv: true
+                    },
+                    { quoted: mek }
+                );
+            } catch (e) {
+                console.log('Video send failed, continuing without it:', e);
+                throw e;
+            }
+        };
+
+        try {
+            await sendMenuVideo();
+        } catch (err) {
+            // fallback to image
+            console.log("Fallback to image because video failed.");
+        }
+
+        // Send caption + image regardless
         await conn.sendMessage(from, {
-            image: { url: config.MENU_ALIVE_URL ||'https://files.catbox.moe/z2nfoo.jpg'},
+            image: { url: config.MENU_ALIVE_URL || 'https://files.catbox.moe/z2nfoo.jpg' },
             caption: status,
             contextInfo: {
                 mentionedJid: [m.sender],
