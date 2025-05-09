@@ -1,100 +1,129 @@
-const config = require('../config');
 const { cmd } = require('../command');
-const yts = require('yt-search');
+const { ytsearch } = require('@dark-yasiya/yt-dl.js');
+const DY_SCRAP = require('@dark-yasiya/scrap');
+const dy_scrap = new DY_SCRAP();
+const fetch = require('node-fetch');
 
 cmd({
-  pattern: "ytsm",
-  alias: ["yplay", "ytsearchplay", "ytss"],
-  use: ".ytsplay <query>",
-  react: "🎧",
-  desc: "Search on YouTube and download audio/video",
-  category: "search + download",
+  pattern: "media",
+  alias: ["ytdownload", "ytmedia","ytdm"],
+  use: ".media <query>",
+  react: "📽️",
+  desc: "Search YouTube and choose Audio/Video to download",
+  category: "main",
   filename: __filename
 }, async (conn, m, mek, { from, q, reply }) => {
   try {
-    if (!q) return await reply("❌ Please provide a search term!");
+    if (!q) return reply("❌ Please provide a YouTube song or video name.");
 
-    const search = await yts(q);
-    const videos = search.videos.slice(0, 5);
-    if (!videos.length) return await reply("❌ No results found!");
+    const yt = await ytsearch(q);
+    if (yt.results.length < 1) return reply("❌ No results found.");
 
-    let txt = `🎬 *Search Results for:* _${q}_\n\n`;
-    videos.forEach((v, i) => {
-      txt += `*${i + 1}.* ${v.title}\n   ⏳ ${v.timestamp} | 👁 ${v.views} | 🔗 ${v.url}\n\n`;
-    });
-    txt += `📝 Reply with a number (1-${videos.length}) to select a song/video.`;
+    const chosen = yt.results[0];
 
-    const sentMsg = await conn.sendMessage(from, { text: txt }, { quoted: mek });
-    const msgId = sentMsg.key.id;
+    const chooseType = `📌 *What do you want to download?*\n\n1️⃣ Audio 🎧\n2️⃣ Video 🎥\n\n_Reply with the number_`;
+    const typeMsg = await conn.sendMessage(from, { image: { url: chosen.thumbnail }, caption: chooseType }, { quoted: mek });
 
-    conn.ev.once('messages.upsert', async (msgUpdate) => {
-      try {
-        const res = msgUpdate.messages[0];
-        const isReply = res?.message?.extendedTextMessage?.contextInfo?.stanzaId === msgId;
-        const userInput = res.message?.conversation || res.message?.extendedTextMessage?.text;
-        const selectedIndex = parseInt(userInput?.trim());
+    const typeMsgId = typeMsg.key.id;
 
-        if (!isReply || isNaN(selectedIndex) || selectedIndex < 1 || selectedIndex > videos.length) return;
+    conn.ev.on("messages.upsert", async (msgUpdate) => {
+      const userMsg = msgUpdate?.messages[0];
+      if (!userMsg?.message) return;
 
-        const chosen = videos[selectedIndex - 1];
-        const videoUrl = chosen.url;
+      const replyText = userMsg.message?.conversation || userMsg.message?.extendedTextMessage?.text;
+      const isReplyToType = userMsg?.message?.extendedTextMessage?.contextInfo?.stanzaId === typeMsgId;
 
-        const formatMsg = `🖼️ *${chosen.title}*\n\n` +
-          `1️⃣ Audio\n2️⃣ Video\n\nReply with your choice to download.`;
+      if (!isReplyToType) return;
 
-        const promptMsg = await conn.sendMessage(from, { image: { url: chosen.image }, caption: formatMsg }, { quoted: res });
-        const promptMsgId = promptMsg.key.id;
+      if (replyText === "1") {
+        // AUDIO format options
+        const audioOpt = `🎧 *Choose audio format for:* ${chosen.title}\n\n1️⃣ MP3 Document 📄\n2️⃣ MP3 Audio 🎧\n3️⃣ Voice Note 🎙️`;
+        const audioMsg = await conn.sendMessage(from, { image: { url: chosen.thumbnail }, caption: audioOpt }, { quoted: userMsg });
+        const audioMsgId = audioMsg.key.id;
 
-        conn.ev.once('messages.upsert', async (formatReply) => {
-          try {
-            const fr = formatReply.messages[0];
-            const frText = fr.message?.conversation || fr.message?.extendedTextMessage?.text;
-            const isReply2 = fr?.message?.extendedTextMessage?.contextInfo?.stanzaId === promptMsgId;
+        conn.ev.on("messages.upsert", async (aUpdate) => {
+          const aMsg = aUpdate?.messages[0];
+          if (!aMsg?.message) return;
 
-            if (!isReply2) return;
+          const aText = aMsg.message?.conversation || aMsg.message?.extendedTextMessage?.text;
+          const isReplyToAudio = aMsg?.message?.extendedTextMessage?.contextInfo?.stanzaId === audioMsgId;
+          if (!isReplyToAudio) return;
 
-            await conn.sendMessage(from, { react: { text: "⏳", key: fr.key } });
+          const audioData = await dy_scrap.ytmp3(chosen.url);
+          const url = audioData?.result?.download?.url;
+          if (!url) return reply("❌ Audio download failed!");
 
-            if (frText.trim() === "1") {
-              // Audio Download
-              const api = await fetch(`https://apis.davidcyriltech.my.id/download/ytmp3?url=${encodeURIComponent(videoUrl)}`);
-              const json = await api.json();
-              if (!json.result?.download_url) return reply("❌ Failed to get audio!");
-
+          switch (aText.trim()) {
+            case "1":
               await conn.sendMessage(from, {
-                audio: { url: json.result.download_url },
+                document: { url },
+                fileName: `${chosen.title}.mp3`,
                 mimetype: "audio/mpeg"
-              }, { quoted: fr });
-
-            } else if (frText.trim() === "2") {
-              // Video Download
-              const api = await fetch(`https://apis.davidcyriltech.my.id/download/ytmp4?url=${encodeURIComponent(videoUrl)}`);
-              const json = await api.json();
-              if (!json.result?.download_url) return reply("❌ Failed to get video!");
-
+              }, { quoted: aMsg });
+              break;
+            case "2":
               await conn.sendMessage(from, {
-                video: { url: json.result.download_url },
-                mimetype: "video/mp4"
-              }, { quoted: fr });
-
-            } else {
-              await conn.sendMessage(from, { text: "❌ Invalid choice. Reply with 1 or 2." }, { quoted: fr });
-            }
-
-          } catch (e) {
-            console.error(e);
-            await conn.sendMessage(from, { text: `❌ Download failed: ${e.message}` }, { quoted: mek });
+                audio: { url },
+                mimetype: "audio/mpeg"
+              }, { quoted: aMsg });
+              break;
+            case "3":
+              await conn.sendMessage(from, {
+                audio: { url },
+                mimetype: "audio/mpeg",
+                ptt: true
+              }, { quoted: aMsg });
+              break;
+            default:
+              await conn.sendMessage(from, { text: "❌ Invalid input. Reply with 1, 2, or 3." }, { quoted: aMsg });
           }
         });
 
-      } catch (e) {
-        console.error(e);
-        await conn.sendMessage(from, { text: `❌ Selection error: ${e.message}` }, { quoted: mek });
+      } else if (replyText === "2") {
+        // VIDEO format options
+        const videoOpt = `🎥 *Choose video format for:* ${chosen.title}\n\n1️⃣ MP4 Document 📄\n2️⃣ MP4 Video ▶️`;
+        const videoMsg = await conn.sendMessage(from, { image: { url: chosen.thumbnail }, caption: videoOpt }, { quoted: userMsg });
+        const videoMsgId = videoMsg.key.id;
+
+        conn.ev.on("messages.upsert", async (vUpdate) => {
+          const vMsg = vUpdate?.messages[0];
+          if (!vMsg?.message) return;
+
+          const vText = vMsg.message?.conversation || vMsg.message?.extendedTextMessage?.text;
+          const isReplyToVideo = vMsg?.message?.extendedTextMessage?.contextInfo?.stanzaId === videoMsgId;
+          if (!isReplyToVideo) return;
+
+          const apiUrl = `https://apis.davidcyriltech.my.id/download/ytmp4?url=${encodeURIComponent(chosen.url)}`;
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+          const url = data?.result?.download_url;
+          if (!url) return reply("❌ Video download failed!");
+
+          switch (vText.trim()) {
+            case "1":
+              await conn.sendMessage(from, {
+                document: { url },
+                fileName: `${chosen.title}.mp4`,
+                mimetype: "video/mp4"
+              }, { quoted: vMsg });
+              break;
+            case "2":
+              await conn.sendMessage(from, {
+                video: { url },
+                mimetype: "video/mp4"
+              }, { quoted: vMsg });
+              break;
+            default:
+              await conn.sendMessage(from, { text: "❌ Invalid input. Reply with 1 or 2." }, { quoted: vMsg });
+          }
+        });
+      } else {
+        await conn.sendMessage(from, { text: "❌ Invalid input. Use 1 for Audio or 2 for Video." }, { quoted: userMsg });
       }
     });
 
-  } catch (e) {
-    console.error(e);
-    await conn.sendMessage(from, { text: `❌ Unexpected error: ${e.message}` }, { quoted: mek });
+  } catch (err) {
+    console.error(err);
+    reply("❌ Error: " + err.message);
   }
 });
