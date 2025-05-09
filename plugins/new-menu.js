@@ -29,7 +29,7 @@ cmd({
 
         let greeting = "සුභ සැන්දෑවක්!";
         if (hourNumber < 12) greeting = "සුභ උදෑසනක්!";
-        else if (hourNumber < 18) greeting = "සුභ පස්වරුෙවක්!";
+        else if (hourNumber < 18) greeting = "සුභ රාත්‍රීයක්!";
 
         const senderName = m.pushName || "User";
 
@@ -41,13 +41,13 @@ cmd({
 ╰━━━━━━━━━━━━━━━┈⊷
 ╭━━━━━━━━━━━━━━━━┈⊷
 ┃⚙️ *Bot Info*
-┃├ Owner: *${config.OWNER_NAME}*
+┃├ Owner: *Chamindu*
 ┃├ Baileys: *Multi Device*
 ┃├ Type: *NodeJs*
 ┃├ Platform: *Heroku*
 ┃├ Mode: *[${config.MODE}]*
 ┃├ Prefix: *[${config.PREFIX}]*
-┃└ Version: *1.0.0 Bᴇᴛᴀ*
+┃└ Version: *1.0.0*
 ╰━━━━━━━━━━━━━━━┈⊷
 
 ╭━━〔 *Menu List* 〕━━┈⊷
@@ -64,7 +64,7 @@ cmd({
 ┃🔟  🔳 *Logo Menu*
 ╰━━━━━━━━━━━━━━━┈⊷
 
-> ${config.DESCRIPTION}`;
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`;
 
         const contextInfo = {
             mentionedJid: [m.sender],
@@ -72,7 +72,7 @@ cmd({
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363419192353625@newsletter',
-                newsletterName: config.OWNER_NAME,
+                newsletterName: '☈☟𝗖𝗛𝗔𝗠𝗔 𝗠𝗗 𝗩1️⃣',
                 serverMessageId: 143
             }
         };
@@ -202,7 +202,7 @@ cmd({
 ┃★│ • darama [name]
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             },
             '1': {
@@ -238,7 +238,7 @@ cmd({
 ┃★│ • invite
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             },
             '2': {
@@ -266,8 +266,8 @@ cmd({
 ┃★│ • mon
 ┃★│ • cunfuzed
 ┃★╰──────────────
-╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+╰━━━━━━━━━━━━━━━┈⊷>
+ *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             },
             '3': {
@@ -291,7 +291,7 @@ cmd({
 ┃★│ • allmenu
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             },
             '4': {
@@ -310,7 +310,7 @@ cmd({
 ┃★│ • aiimg3 [text]
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             },
             '5': {
@@ -337,7 +337,7 @@ cmd({
 ┃★│ • naruto
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             },
             '6': {
@@ -360,7 +360,7 @@ cmd({
 ┃★│ • unbase64 [text]
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             },
             '7': {
@@ -390,7 +390,7 @@ cmd({
 ┃★│ • weather [loc]
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             },
             '8': {
@@ -421,7 +421,7 @@ cmd({
 ┃★│ • poke @user
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             },
             '9': {
@@ -444,7 +444,7 @@ cmd({
 ┃★│ • restart
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             },
             '10': {
@@ -459,7 +459,7 @@ cmd({
 ┃★│ • logo5 [text]
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`,
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                 image: true
             }
         };
@@ -516,7 +516,7 @@ cmd({
                         await conn.sendMessage(
                             senderID,
                             {
-                                text: `❌ *Invalid Option!* ❌\n\nPlease reply with a number between 0-10 to select a menu.\n\n*Example:* Reply with "1" for Group Menu\n\n> ${config.DESCRIPTION}`,
+                                text: `❌ *Invalid Option!* ❌\n\nPlease reply with a number between 0-10 to select a menu.\n\n*Example:* Reply with "1" for Group Menu\n\n> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`,
                                 contextInfo: contextInfo
                             },
                             { quoted: receivedMsg }
@@ -541,7 +541,7 @@ cmd({
         try {
             await conn.sendMessage(
                 from,
-                { text: `❌ Menu system is currently busy. Please try again later.\n\n> ${config.DESCRIPTION}` },
+                { text: `❌ Menu system is currently busy. Please try again later.\n\n> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*` },
                 { quoted: mek }
             );
         } catch (finalError) {
