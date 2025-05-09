@@ -83,14 +83,14 @@ cmd({
                 return await conn.sendMessage(
                     from,
                     {
-                        video: { url: ' https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/logo/VID-20250508-WA0031(1).mp4 ' }
-                        mimetype: 'video/mp4',
+                        video: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/logo/VID-20250508-WA0031(1).mp4' },
+                        mimetype: 'video/mp4', // Correct property name
                         ptv: true // Set PTV to true for WhatsApp video message
                     },
                     { quoted: mek }
                 );
             } catch (e) {
-                console.log('Video send failed, continuing without it');
+                console.log('Video send failed, continuing without it:', e);
                 throw e; // Let the error propagate to fallback to image
             }
         };
@@ -108,7 +108,7 @@ cmd({
                     { quoted: mek }
                 );
             } catch (e) {
-                console.log('Image send failed, falling back to text');
+                console.log('Image send failed, falling back to text:', e);
                 return await conn.sendMessage(
                     from,
                     { text: menuCaption, contextInfo: contextInfo },
@@ -121,13 +121,17 @@ cmd({
         const sendMenuAudio = async () => {
             try {
                 await new Promise(resolve => setTimeout(resolve, 1000)); // Small delay after image
-                await conn.sendMessage(from, {
-                    audio: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/autovoice/cm4ozo.mp3 ' },
-                    mimetype: 'audio/mp4',
-                    ptt: true,
-                }, { quoted: mek });
+                return await conn.sendMessage(
+                    from,
+                    {
+                        audio: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/autovoice/cm4ozo.mp3' },
+                        mimetype: 'audio/mp4',
+                        ptt: true
+                    },
+                    { quoted: mek }
+                );
             } catch (e) {
-                console.log('Audio send failed, continuing without it');
+                console.log('Audio send failed, continuing without it:', e);
             }
         };
 
@@ -135,7 +139,7 @@ cmd({
         let sentMsg;
         try {
             // Send video with 12s timeout
-            sentMsg = await Promise.race([
+            await Promise.race([
                 sendMenuVideo(),
                 new Promise((_, reject) => setTimeout(() => reject(new Error('Video send timeout')), 12000))
             ]);
@@ -361,7 +365,7 @@ cmd({
             },
             '7': {
                 title: "📌 *Other Menu* 📌",
-                content: `╭━━━〔 *Other Menu* 〕━━━┈⊷
+                content: `╭━━━〔 *Order Menu* 〕━━━┈⊷
 ┃★╭──────────────
 ┃★│ 🕒 *Utilities*
 ┃★│ • timenow
