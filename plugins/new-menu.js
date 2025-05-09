@@ -41,13 +41,13 @@ cmd({
 ╰━━━━━━━━━━━━━━━┈⊷
 ╭━━━━━━━━━━━━━━━━┈⊷
 ┃⚙️ *Bot Info*
-┃├ Owner: *ChaMinDu*
+┃├ Owner: *${config.OWNER_NAME}*
 ┃├ Baileys: *Multi Device*
 ┃├ Type: *NodeJs*
 ┃├ Platform: *Heroku*
 ┃├ Mode: *[${config.MODE}]*
 ┃├ Prefix: *[${config.PREFIX}]*
-┃└ Version: *1.0.0*
+┃└ Version: *1.0.0 Bᴇᴛᴀ*
 ╰━━━━━━━━━━━━━━━┈⊷
 
 ╭━━〔 *Menu List* 〕━━┈⊷
@@ -66,15 +66,32 @@ cmd({
 
 > ${config.DESCRIPTION}`;
 
-
         const contextInfo = {
             mentionedJid: [m.sender],
             forwardingScore: 999,
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363419192353625@newsletter',
-                newsletterName: '☈☟𝗖𝗛𝗔𝗠𝗔 𝗠𝗗 𝗩1️⃣',
+                newsletterName: config.OWNER_NAME,
                 serverMessageId: 143
+            }
+        };
+
+        // Function to send menu video with timeout
+        const sendMenuVideo = async () => {
+            try {
+                return await conn.sendMessage(
+                    from,
+                    {
+                        video: { url: ' https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/logo/VID-20250508-WA0031(1).mp4 ' }
+                        mimetype: 'video/mp4',
+                        ptv: true // Set PTV to true for WhatsApp video message
+                    },
+                    { quoted: mek }
+                );
+            } catch (e) {
+                console.log('Video send failed, continuing without it');
+                throw e; // Let the error propagate to fallback to image
             }
         };
 
@@ -84,7 +101,7 @@ cmd({
                 return await conn.sendMessage(
                     from,
                     {
-                        image: { url:'https://files.catbox.moe/ww4val.jpg' },
+                        image: { url: 'https://files.catbox.moe/ww4val.jpg' },
                         caption: menuCaption,
                         contextInfo: contextInfo
                     },
@@ -105,7 +122,7 @@ cmd({
             try {
                 await new Promise(resolve => setTimeout(resolve, 1000)); // Small delay after image
                 await conn.sendMessage(from, {
-                    audio: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/autovoice/cm4ozo.mp3' },
+                    audio: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/autovoice/cm4ozo.mp3 ' },
                     mimetype: 'audio/mp4',
                     ptt: true,
                 }, { quoted: mek });
@@ -114,33 +131,21 @@ cmd({
             }
         };
 
-        //video note
-        const sendMenuVideo = async () => {
-    try {
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Small delay after image
-        await conn.sendMessage(from, {
-            video: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/logo/VID-20250508-WA0031(1).mp4' },
-            mimetype: 'video/mp4',
-            caption: 'මෙන්න ඔබේ මෙනුව සඳහා ලස්සන වීඩියෝවක්!',
-            gifPlayback: true, // Acts like a short loop or autoplay
-        }, { quoted: mek });
-    } catch (e) {
-        console.log('Video send failed, continuing without it');
-    }
-};
-
-
-
-
-        // Send image first, then audio sequentially
+        // Send video, then image, then audio sequentially
         let sentMsg;
         try {
+            // Send video with 12s timeout
+            sentMsg = await Promise.race([
+                sendMenuVideo(),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('Video send timeout')), 12000))
+            ]);
+
             // Send image with 10s timeout
             sentMsg = await Promise.race([
                 sendMenuImage(),
                 new Promise((_, reject) => setTimeout(() => reject(new Error('Image send timeout')), 10000))
             ]);
-            
+
             // Then send audio with 1s delay and 8s timeout
             await Promise.race([
                 sendMenuAudio(),
@@ -156,7 +161,7 @@ cmd({
                 );
             }
         }
-        
+
         const messageID = sentMsg.key.id;
 
         // Menu data (complete version)
@@ -273,7 +278,7 @@ cmd({
 ┃★│ • restart
 ┃★│ • shutdown
 ┃★│ • updatecmd
-┃★╰───────────���──
+┃★╰──────────────
 ┃★╭──────────────
 ┃★│ ℹ️ *Info Tools*
 ┃★│ • gjid
@@ -438,18 +443,16 @@ cmd({
 > ${config.DESCRIPTION}`,
                 image: true
             },
-                        '10': {
-                title: "🏠 *Logo Menu* 🏠",
+            '10': {
+                title: "🔳 *Logo Menu* 🔳",
                 content: `╭━━━〔 *Logo Menu* 〕━━━┈⊷
 ┃★╭──────────────
-┃★│ ℹ️ *logos*
-┃★│ • ping
-┃★│ • live
-┃★│ • alive
-┃★│ • runtime
-┃★│ • uptime
-┃★│ • repo
-┃★│ • owner
+┃★│ 🖼️ *Logos*
+┃★│ • logo1 [text]
+┃★│ • logo2 [text]
+┃★│ • logo3 [text]
+┃★│ • logo4 [text]
+┃★│ • logo5 [text]
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
 > ${config.DESCRIPTION}`,
@@ -478,7 +481,7 @@ cmd({
                                 await conn.sendMessage(
                                     senderID,
                                     {
-                                        image: { url:'https://files.catbox.moe/ww4val.jpg' },
+                                        image: { url: 'https://files.catbox.moe/ww4val.jpg' },
                                         caption: selectedMenu.content,
                                         contextInfo: contextInfo
                                     },
@@ -509,7 +512,7 @@ cmd({
                         await conn.sendMessage(
                             senderID,
                             {
-                                text: `❌ *Invalid Option!* ❌\n\nPlease reply with a number between 1-10 to select a menu.\n\n*Example:* Reply with "1" for Download Menu\n\n> ${config.DESCRIPTION}`,
+                                text: `❌ *Invalid Option!* ❌\n\nPlease reply with a number between 0-10 to select a menu.\n\n*Example:* Reply with "1" for Group Menu\n\n> ${config.DESCRIPTION}`,
                                 contextInfo: contextInfo
                             },
                             { quoted: receivedMsg }
