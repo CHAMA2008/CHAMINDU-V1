@@ -1,100 +1,100 @@
 const config = require('../config');
 const { cmd } = require('../command');
-const { ytsearch } = require('@dark-yasiya/yt-dl.js');
+const yts = require('yt-search');
 
-// YouTube Search & Interactive Selection Handler
 cmd({
-    pattern: "ytsdum",
-    alias: ["ytplay", "yts"],
-    desc: "Search and select YouTube audio/video",
-    category: "main",
-    use: ".play <query>",
-    filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    try {
-        if (!q) return reply("*කරුණාකර ගීතයේ නමක් හෝ YouTube ලින්ක් එකක් දෙන්න.*");
+  pattern: "ytsm",
+  alias: ["yplay", "ytsearchplay", "ytss"],
+  use: ".ytsplay <query>",
+  react: "🎧",
+  desc: "Search on YouTube and download audio/video",
+  category: "search + download",
+  filename: __filename
+}, async (conn, m, mek, { from, q, reply }) => {
+  try {
+    if (!q) return await reply("❌ Please provide a search term!");
 
-        const yt = await ytsearch(q);
-        if (!yt.results.length) return reply("*ප්‍රතිඵල කිසිවක් හමු නොවුණා.*");
+    const search = await yts(q);
+    const videos = search.videos.slice(0, 5);
+    if (!videos.length) return await reply("❌ No results found!");
 
-        let resultText = `🎬 *Search Results for:* _${q}_\n\n`;
-        yt.results.slice(0, 5).forEach((v, i) => {
-            resultText += `*${i + 1}.* ${v.title}\n   ⏳ ${v.timestamp} | 👁 ${v.views} | 🔗 ${v.url}\n\n`;
-        });
-        resultText += "📝 Reply with a number (1-5) to select a song.";
+    let txt = `🎬 *Search Results for:* _${q}_\n\n`;
+    videos.forEach((v, i) => {
+      txt += `*${i + 1}.* ${v.title}\n   ⏳ ${v.timestamp} | 👁 ${v.views} | 🔗 ${v.url}\n\n`;
+    });
+    txt += `📝 Reply with a number (1-${videos.length}) to select a song/video.`;
 
-        const searchMsg = await conn.sendMessage(from, { text: resultText }, { quoted: mek });
+    const sentMsg = await conn.sendMessage(from, { text: txt }, { quoted: mek });
+    const msgId = sentMsg.key.id;
 
-        conn.ev.once("messages.upsert", async ({ messages }) => {
-            const replyMsg = messages[0];
-            if (!replyMsg.message?.extendedTextMessage) return;
+    conn.ev.once('messages.upsert', async (msgUpdate) => {
+      try {
+        const res = msgUpdate.messages[0];
+        const isReply = res?.message?.extendedTextMessage?.contextInfo?.stanzaId === msgId;
+        const userInput = res.message?.conversation || res.message?.extendedTextMessage?.text;
+        const selectedIndex = parseInt(userInput?.trim());
 
-            const selected = replyMsg.message.extendedTextMessage.text.trim();
-            const index = parseInt(selected);
-            if (isNaN(index) || index < 1 || index > 5) return;
+        if (!isReply || isNaN(selectedIndex) || selectedIndex < 1 || selectedIndex > videos.length) return;
 
-            const selectedVid = yt.results[index - 1];
+        const chosen = videos[selectedIndex - 1];
+        const videoUrl = chosen.url;
 
-            const msgText = `*Selected:* ${selectedVid.title}\n*Choose format:*\n1️⃣ Audio Only\n2️⃣ Video Only\n\n_Reply with 1 or 2_`;
-            const formatMsg = await conn.sendMessage(from, { image: { url: selectedVid.thumbnail }, caption: msgText }, { quoted: replyMsg });
+        const formatMsg = `🖼️ *${chosen.title}*\n\n` +
+          `1️⃣ Audio\n2️⃣ Video\n\nReply with your choice to download.`;
 
-            conn.ev.once("messages.upsert", async ({ messages }) => {
-                const formatReply = messages[0];
-                if (!formatReply.message?.extendedTextMessage) return;
+        const promptMsg = await conn.sendMessage(from, { image: { url: chosen.image }, caption: formatMsg }, { quoted: res });
+        const promptMsgId = promptMsg.key.id;
 
-                const formatChoice = formatReply.message.extendedTextMessage.text.trim();
-                const isAudio = formatChoice === "1";
+        conn.ev.once('messages.upsert', async (formatReply) => {
+          try {
+            const fr = formatReply.messages[0];
+            const frText = fr.message?.conversation || fr.message?.extendedTextMessage?.text;
+            const isReply2 = fr?.message?.extendedTextMessage?.contextInfo?.stanzaId === promptMsgId;
 
-                if (isAudio) {
-                    const audioApi = `https://apis.davidcyriltech.my.id/youtube/mp3?url=${encodeURIComponent(selectedVid.url)}`;
-                    const res = await fetch(audioApi);
-                    const data = await res.json();
-                    if (!data.result?.downloadUrl) return reply("*Audio ලබාගැනීම අසාර්ථකයි.*");
+            if (!isReply2) return;
 
-                    const formatText = `*Choose Audio Format:*\n1️⃣ Document\n2️⃣ Normal\n3️⃣ Voice Note`;
-                    const audioFormatMsg = await conn.sendMessage(from, { text: formatText }, { quoted: formatReply });
+            await conn.sendMessage(from, { react: { text: "⏳", key: fr.key } });
 
-                    conn.ev.once("messages.upsert", async ({ messages }) => {
-                        const fMsg = messages[0];
-                        const opt = fMsg.message?.extendedTextMessage?.text.trim();
-                        if (opt === "1") {
-                            await conn.sendMessage(from, { document: { url: data.result.downloadUrl }, mimetype: "audio/mpeg", fileName: `${selectedVid.title}.mp3` }, { quoted: fMsg });
-                        } else if (opt === "2") {
-                            await conn.sendMessage(from, { audio: { url: data.result.downloadUrl }, mimetype: "audio/mpeg" }, { quoted: fMsg });
-                        } else if (opt === "3") {
-                            await conn.sendMessage(from, { audio: { url: data.result.downloadUrl }, mimetype: "audio/mpeg", ptt: true }, { quoted: fMsg });
-                        } else {
-                            await conn.sendMessage(from, { text: "*වැරදි තේරීමක්. 1, 2 හෝ 3 තෝරන්න.*" }, { quoted: fMsg });
-                        }
-                    });
-                } else if (formatChoice === "2") {
-                    const videoApi = `https://apis.davidcyriltech.my.id/download/ytmp4?url=${encodeURIComponent(selectedVid.url)}`;
-                    const res = await fetch(videoApi);
-                    const data = await res.json();
-                    if (!data.result?.download_url) return reply("*වීඩියෝ ලබාගැනීම අසාර්ථකයි.*");
+            if (frText.trim() === "1") {
+              // Audio Download
+              const api = await fetch(`https://apis.davidcyriltech.my.id/download/ytmp3?url=${encodeURIComponent(videoUrl)}`);
+              const json = await api.json();
+              if (!json.result?.download_url) return reply("❌ Failed to get audio!");
 
-                    const formatText = `*Choose Video Format:*\n1️⃣ Document\n2️⃣ Normal Video`;
-                    const videoFormatMsg = await conn.sendMessage(from, { text: formatText }, { quoted: formatReply });
+              await conn.sendMessage(from, {
+                audio: { url: json.result.download_url },
+                mimetype: "audio/mpeg"
+              }, { quoted: fr });
 
-                    conn.ev.once("messages.upsert", async ({ messages }) => {
-                        const fMsg = messages[0];
-                        const opt = fMsg.message?.extendedTextMessage?.text.trim();
-                        if (opt === "1") {
-                            await conn.sendMessage(from, { document: { url: data.result.download_url }, mimetype: "video/mp4", fileName: `${selectedVid.title}.mp4` }, { quoted: fMsg });
-                        } else if (opt === "2") {
-                            await conn.sendMessage(from, { video: { url: data.result.download_url }, mimetype: "video/mp4" }, { quoted: fMsg });
-                        } else {
-                            await conn.sendMessage(from, { text: "*වැරදි තේරීමක්. 1 හෝ 2 තෝරන්න.*" }, { quoted: fMsg });
-                        }
-                    });
-                } else {
-                    await conn.sendMessage(from, { text: "*වැරදි තේරීමක්. කරුණාකර 1 හෝ 2 යොදන්න.*" }, { quoted: formatReply });
-                }
-            });
+            } else if (frText.trim() === "2") {
+              // Video Download
+              const api = await fetch(`https://apis.davidcyriltech.my.id/download/ytmp4?url=${encodeURIComponent(videoUrl)}`);
+              const json = await api.json();
+              if (!json.result?.download_url) return reply("❌ Failed to get video!");
+
+              await conn.sendMessage(from, {
+                video: { url: json.result.download_url },
+                mimetype: "video/mp4"
+              }, { quoted: fr });
+
+            } else {
+              await conn.sendMessage(from, { text: "❌ Invalid choice. Reply with 1 or 2." }, { quoted: fr });
+            }
+
+          } catch (e) {
+            console.error(e);
+            await conn.sendMessage(from, { text: `❌ Download failed: ${e.message}` }, { quoted: mek });
+          }
         });
 
-    } catch (e) {
+      } catch (e) {
         console.error(e);
-        reply("*දෝෂයක් ඇතිවුණා. කරුණාකර පසුව උත්සාහ කරන්න.*");
-    }
+        await conn.sendMessage(from, { text: `❌ Selection error: ${e.message}` }, { quoted: mek });
+      }
+    });
+
+  } catch (e) {
+    console.error(e);
+    await conn.sendMessage(from, { text: `❌ Unexpected error: ${e.message}` }, { quoted: mek });
+  }
 });
