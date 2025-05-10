@@ -1,26 +1,26 @@
 const config = require('../config')
 const { cmd, commands } = require('../command');
 const os = require("os")
-const {runtime} = require('../lib/functions')
+const { runtime } = require('../lib/functions')
 const axios = require('axios')
 
 cmd({
     pattern: "menu2",
-    alias: ["allmenu","fullmenu"],
+    alias: ["allmenu", "fullmenu"],
     use: '.menu2',
     desc: "Show all bot commands",
     category: "menu",
     react: "📜",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 🚀 *${config.BOT_NAME}* 〕━━┈⊷
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `╭━━〔 🚀*𝗖𝗛𝗔𝗠𝗔 𝗠𝗗 𝗩1️⃣* 〕━━┈⊷
 ┃◈╭─────────────────·๏
-┃◈┃• 👑 Owner : *${config.OWNER_NAME}*
+┃◈┃• 👑 Owner : *chamindu*
 ┃◈┃• ⚙️ Prefix : *[${config.PREFIX}]*
 ┃◈┃• 🌐 Platform : *Heroku*
-┃◈┃• 📦 Version : *4.0.0*
+┃◈┃• 📦 Version : *1.0.0*
 ┃◈┃• ⏱️ Runtime : *${runtime(process.uptime())}*
 ┃◈╰─────────────────┈⊷
 ╰━━━━━━━━━━━━━━━━━━━┈⊷
@@ -54,7 +54,6 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• 🎵 tiks
 ┃◈╰─────────────────┈⊷
 ╰━━━━━━━━━━━━━━━━━━━┈⊷
-
 ╭━━〔 👥 *GROUP MENU* 〕━━┈⊷
 ┃◈╭─────────────────·๏
 ┃◈┃• 🔗 grouplink
@@ -339,36 +338,59 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• 📹 ytv
 ┃◈╰─────────────────┈⊷
 ╰━━━━━━━━━━━━━━━━━━━┈⊷
-> ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/7zfdcq.jpg' },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363419192353625@newsletter',
-                        newsletterName: config.BOT_NAME,
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ chamindu*`;
 
-        // Send audio
-        await conn.sendMessage(from, {
-            audio: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/autovoice/cm4ozo.mp3' },
-            mimetype: 'audio/mp4',
-            ptt: true
-        }, { quoted: mek });
-        
-    } catch (e) {
-        console.log(e);
-        reply(`❌ Error: ${e}`);
-    }
-});
+            // Function to send menu video
+            const sendMenuVideo = async () => {
+                return await conn.sendMessage(
+                    from,
+                    {
+                        video: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/logo/VID-20250508-WA0031(1).mp4' },
+                        mimetype: 'video/mp4',
+                        ptv: true
+                    },
+                    { quoted: mek }
+                );
+            };
+
+            // Try to send video first
+            try {
+                await sendMenuVideo();
+            } catch (e) {
+                console.log('Video send failed, sending fallback image:', e);
+                await conn.sendMessage(
+                    from,
+                    {
+                        image: { url: 'https://files.catbox.moe/ww4val.jpg' },
+                        caption: dec,
+                        contextInfo: {
+                            mentionedJid: [m.sender],
+                            forwardingScore: 999,
+                            isForwarded: true,
+                            forwardedNewsletterMessageInfo: {
+                                newsletterJid: '120363419192353625@newsletter',
+                                newsletterName: '☈☟𝗖𝗛𝗔𝗠𝗔 𝗠𝗗 𝗩1️⃣',
+                                serverMessageId: 143
+                            }
+                        }
+                    },
+                    { quoted: mek }
+                );
+            }
+
+            // Send menu caption as text (optional if caption not in image)
+            await conn.sendMessage(from, { text: dec }, { quoted: mek });
+
+            // Send audio
+            await conn.sendMessage(from, {
+                audio: { url: 'https://github.com/Chamijd/KHAN-DATA/raw/refs/heads/main/autovoice/cm4ozo.mp3' },
+                mimetype: 'audio/mp4',
+                ptt: true
+            }, { quoted: mek });
+
+        } catch (e) {
+            console.log(e);
+            reply(`❌ Error: ${e}`);
+        }
+    });
